@@ -1,16 +1,16 @@
-
-
-
-
-
-
-
 terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
       version = "4.20.1"
     }
+  }
+  backend "s3" {
+    bucket = "tf-remote-s3-bucket-jimmy"
+    key = "env/dev/tf-remote-backend.tfstate"
+    region = "us-east-1"
+    dynamodb_table = "tf-remote-state-lock"
+    encrypt = true
   }
 }
 
